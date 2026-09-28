@@ -35,7 +35,7 @@ export default function PostsPage({ onToggle, onDelete }) {
       blogs.filter(
         (p) =>
           (filter === "all" || p.status === filter) &&
-          p.name.toLowerCase().includes(search.toLowerCase()),
+          p?.name?.toLowerCase().includes(search.toLowerCase()),
       ),
     [blogs, search, filter],
   );

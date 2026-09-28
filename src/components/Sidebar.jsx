@@ -14,7 +14,7 @@ export default function Sidebar({ open, onClose, draftCount }) {
         <div className="a-fade fixed inset-0 z-30 bg-slate-900/40 lg:hidden" onClick={onClose} />
       )}
       <aside
-        className={`fixed lg:static z-40 inset-y-0 left-0 w-60 bg-orange-100 flex flex-col transition-transform duration-300 ${
+        className={`fixed lg:static z-40 inset-y-0 left-0 w-60 bg-orange-100/50 flex flex-col transition-transform duration-300 ${
           open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
@@ -34,7 +34,7 @@ export default function Sidebar({ open, onClose, draftCount }) {
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
                   isActive
                     ? "bg-orange-800 text-white translate-x-1"
-                    : "bg-orange-200 text-orange-800 hover:bg-orange-300 hover:translate-x-1"
+                    : "bg-orange-200/50 text-orange-800 hover:bg-orange-300/50 hover:translate-x-1"
                 }`
               }
             >
