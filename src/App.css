@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes drawLine { from { stroke-dashoffset: 1200 } to { stroke-dashoffset: 0 } }
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: none } }
+@keyframes popIn { from { opacity: 0; transform: scale(.95) translateY(8px) } to { opacity: 1; transform: none } }
+@keyframes slideOut { to { opacity: 0; transform: translateX(40px) } }
+@keyframes toastIn { from { opacity: 0; transform: translateX(24px) } to { opacity: 1; transform: none } }
+@keyframes growBar { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+
+.a-draw { stroke-dasharray: 1200; animation: drawLine 1.6s ease-out forwards }
+.a-fade { animation: fadeIn .3s ease-out both }
+.a-rise { animation: riseIn .5s ease-out both }
+.a-pop { animation: popIn .25s ease-out both }
+.a-out { animation: slideOut .35s ease-in forwards }
+.a-toast { animation: toastIn .3s ease-out both }
+.a-bar { transform-origin: left; animation: growBar .7s ease-out both }
+
+@media (prefers-reduced-motion: reduce) {
+  .a-draw, .a-fade, .a-rise, .a-pop, .a-toast, .a-bar { animation: none }
+  .a-draw { stroke-dasharray: none }
+}
