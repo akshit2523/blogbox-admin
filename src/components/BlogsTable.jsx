@@ -12,11 +12,7 @@ const statusStyle = {
   scheduled: "bg-amber-100 text-amber-700",
 };
 
-export default function BlogsTable({
-  rows,
-  leaving,
-}) {
-
+export default function BlogsTable({ rows, leaving }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
@@ -37,7 +33,7 @@ export default function BlogsTable({
               key={p._id}
               className={`border-b border-slate-50 hover:bg-slate-50 transition-colors ${leaving === p.id ? "a-out" : "a-fade"}`}
             >
-                <td className="px-3 py-3 text-slate-600 font-display !text-xl !text-orange-800  hidden md:table-cell">
+              <td className="px-3 py-3 text-slate-600 font-display !text-xl !text-orange-800  hidden md:table-cell">
                 {index + 1}
               </td>
               <td className="px-5 py-3 text-start font-medium text-slate-900">
