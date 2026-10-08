@@ -1,0 +1,52 @@
+/* Editor container */
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #000;
+}
+
+.blog-editor {
+  min-height: 600px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: #fff;
+  padding: 40px 50px;
+}
+
+/* Main Editor.js area */
+.blog-editor .codex-editor {
+  min-height: 500px;
+}
+
+/* Content width */
+.blog-editor .codex-editor__redactor {
+  padding-bottom: 100px !important;
+}
+
+/* Paragraph */
+.blog-editor .ce-paragraph {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Headings */
+.blog-editor .ce-header {
+  color: #111;
+  font-weight: 600;
+}
+
+.blog-editor h2.ce-header {
+  color: #111;
+  font-size: 30px;
+}
+
+.blog-editor h3.ce-header {
+  font-size: 24px;
+}
+
+.blog-editor h4.ce-header {
+  font-size: 20px;
+}

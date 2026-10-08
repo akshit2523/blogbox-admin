@@ -1,17 +1,26 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, FileText, MessageSquare, PenLine } from "lucide-react";
+import {
+  LayoutDashboard,
+  FileText,
+  MessageSquare,
+  PenLine,
+} from "lucide-react";
 
 const nav = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/blogs", label: "Blogs", icon: FileText },
   { to: "/comments", label: "Comments", icon: MessageSquare },
+  { to: "/blogData", label: "Create Blog", icon: PenLine },
 ];
 
 export default function Sidebar({ open, onClose, draftCount }) {
   return (
     <>
       {open && (
-        <div className="a-fade fixed inset-0 z-30 bg-slate-900/40 lg:hidden" onClick={onClose} />
+        <div
+          className="a-fade fixed inset-0 z-30 bg-slate-900/40 lg:hidden"
+          onClick={onClose}
+        />
       )}
       <aside
         className={`fixed lg:static z-40 inset-y-0 left-0 w-60 bg-orange-100/50 flex flex-col transition-transform duration-300 ${
@@ -46,7 +55,9 @@ export default function Sidebar({ open, onClose, draftCount }) {
 
         <div className="mt-auto p-4 m-3 rounded-xl bg-orange-800 text-sm">
           <p className="text-white font-medium">Drafts waiting</p>
-          <p className="text-orange-200 mt-1">{draftCount} posts are still drafts.</p>
+          <p className="text-orange-200 mt-1">
+            {draftCount} posts are still drafts.
+          </p>
         </div>
       </aside>
     </>
