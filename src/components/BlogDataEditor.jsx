@@ -4,7 +4,8 @@ import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Quote from "@editorjs/quote";
 import ImageTool from "@editorjs/image";
-import './BlogDataEditor.css'
+import ImageService from "../services/upload.service";
+import "./BlogDataEditor.css";
 
 export default function BlogDataEditor({ initialData, onChange }) {
   const editorRef = useRef(null);
@@ -40,33 +41,17 @@ export default function BlogDataEditor({ initialData, onChange }) {
 
         image: {
           class: ImageTool,
-
           config: {
             uploader: {
               async uploadByFile(file) {
-                const formData = new FormData();
+                const result = await ImageService.uploadImage(file);
 
-                formData.append("image", file);
-
-                const response = await fetch(
-                  `${process.env.NEXT_PUBLIC_API_URL}/api/upload`,
-                  {
-                    method: "POST",
-                    body: formData,
-                  }
-                );
-
-                const result = await response.json();
-
-                if (!response.ok) {
-                  throw new Error(
-                    result.message || "Image upload failed"
-                  );
+                if (result.success !== 1) {
+                  throw new Error(result.message || "Image upload failed");
                 }
 
                 return {
                   success: 1,
-
                   file: {
                     url: result.data.url,
                     publicId: result.data.publicId,
