@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import CreateBlogData from "./CreateBlogData";
 
-export default function CreateBlogModal({ onClose }) {
+export default function CreateBlogModal({ onClose, getBlogs }) {
   return (
     <div
       className="a-fade fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50"
@@ -23,7 +23,7 @@ export default function CreateBlogModal({ onClose }) {
         <h3 className="!mb-8 !mt-2 text:lg lg:text-2xl text-center !font-bold !text-orange-800">
           Create Blog
         </h3>
-        <CreateBlogData close={onClose} />
+        <CreateBlogData close={onClose} fetchBlogs={getBlogs} />
       </div>
     </div>
   );

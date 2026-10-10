@@ -97,7 +97,7 @@ export default function PostsPage({ onToggle, onDelete }) {
         </div>
       )}
       {openCreateBlogModel && (
-        <CreateBlogModal onClose={() => handleCloseModal()} />
+        <CreateBlogModal onClose={() => handleCloseModal()} getBlogs={() => fetchBlogs()} />
       )}
     </div>
   );
