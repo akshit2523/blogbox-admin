@@ -24,7 +24,7 @@
   margin: 0;
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark; 
+  color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -63,7 +63,7 @@ body {
 
 #root {
   max-width: 100%;
-  margin: 0;  
+  margin: 0;
   text-align: center;
   border-inline: 1px solid var(--border);
   min-height: 100svh;
@@ -114,4 +114,30 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+.design-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.design-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.design-scrollbar::-webkit-scrollbar-thumb {
+  background: #8c3b2e;
+  border-radius: 999px;
+}
+
+.design-scrollbar-verticle::-webkit-scrollbar {
+  height: 3px;
+}
+
+.design-scrollbar-verticle::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.design-scrollbar-verticle::-webkit-scrollbar-thumb {
+  background: #8c3b2e;
+  border-radius: 999px;
 }

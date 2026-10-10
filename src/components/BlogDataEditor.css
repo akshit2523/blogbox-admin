@@ -1,5 +1,10 @@
 /* Editor container */
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   margin-top: 1.5em;
@@ -7,8 +12,8 @@ h1,h2,h3,h4,h5,h6 {
   color: #000;
 }
 
-.blog-editor {
-  min-height: 600px;
+#blog-editor {
+  min-height: 200px;
   border: 1px solid #d9d9d9;
   border-radius: 12px;
   background: #fff;
@@ -16,17 +21,17 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /* Main Editor.js area */
-.blog-editor .codex-editor {
-  min-height: 500px;
+#blog-editor .codex-editor {
+  min-height: 200px;
 }
 
 /* Content width */
-.blog-editor .codex-editor__redactor {
+#blog-editor .codex-editor__redactor {
   padding-bottom: 100px !important;
 }
 
 /* Paragraph */
-.blog-editor .ce-paragraph {
+#blog-editor .ce-paragraph {
   font-size: 17px;
   line-height: 1.8;
   color: #333;
@@ -50,3 +55,60 @@ h1,h2,h3,h4,h5,h6 {
 .blog-editor h4.ce-header {
   font-size: 20px;
 }
+
+/* Editor.js positioning context */
+#blog-editor .codex-editor {
+  position: relative;
+  overflow: visible;
+}
+
+/* Keep the toolbar above editor content */
+#blog-editor .ce-toolbar {
+  z-index: 20;
+}
+
+/* Toolbox panel */
+#blog-editor .ce-toolbox {
+  position: relative;
+  z-index: 30;
+  isolation: isolate;
+}
+
+/* Toolbox must have an opaque background */
+#blog-editor .ce-toolbox__content {
+  position: relative;
+  z-index: 31;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 10%);
+}
+
+/* Keep the toolbox items above the redactor */
+#blog-editor .ce-toolbox__button,
+#blog-editor .ce-toolbox__button--active {
+  position: relative;
+  z-index: 32;
+  background-color: #fff;
+}
+
+/* Editor.js delimiter — single thin line at the bottom */
+#blog-editor .ce-delimiter {
+  font-size: 0;
+  line-height: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid #d6d3d1;
+  text-align: center;
+}
+
+/* Remove the default delimiter symbols and extra lines */
+#blog-editor .ce-delimiter::before,
+#blog-editor .ce-delimiter::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+
+
+
+

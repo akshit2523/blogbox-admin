@@ -3,6 +3,7 @@ import { Search, Plus } from "lucide-react";
 import BlogsTable from "../components/BlogsTable.jsx";
 import BlogService from "../services/blog.service.js";
 import CreateBlogModal from "../components/CreateBlogModal";
+import FilterBlogsDropDown from "../components/FilterBlogsDropDown";
 
 export default function PostsPage({ onToggle, onDelete }) {
   const [search, setSearch] = useState("");
@@ -25,7 +26,7 @@ export default function PostsPage({ onToggle, onDelete }) {
       setLoading(false);
     }
   }
-
+  console.log(blogs);
   useEffect(() => {
     fetchBlogs();
   }, []);
@@ -34,11 +35,15 @@ export default function PostsPage({ onToggle, onDelete }) {
     () =>
       blogs.filter(
         (p) =>
-          (filter === "all" || p.status === filter) &&
-          p?.name?.toLowerCase().includes(search.toLowerCase()),
+          (filter === "all" ||
+            (filter === "featured"
+              ? p.featured === true
+              : p.status === filter)) &&
+          p?.title?.toLowerCase().includes(search.toLowerCase()),
       ),
     [blogs, search, filter],
   );
+
   const remove = (id) => {
     setLeaving(id);
     setTimeout(() => {
@@ -46,7 +51,11 @@ export default function PostsPage({ onToggle, onDelete }) {
       setLeaving(null);
     }, 350);
   };
-  console.log(openCreateBlogModel);
+
+  async function handleCloseModal(){
+    setOpenCreateBlogModel(false)
+  }
+
   return (
     <div>
       {loading ? (
@@ -75,17 +84,7 @@ export default function PostsPage({ onToggle, onDelete }) {
                 />
               </div>
 
-              <div className="flex gap-1 bg-slate-100 p-1 rounded-lg self-start">
-                {["all", "published", "draft", "scheduled"].map((f) => (
-                  <button
-                    key={f}
-                    onClick={() => setFilter(f)}
-                    className={`px-3 py-1 rounded-md text-sm capitalize transition-all ${filter === f ? "bg-white shadow text-slate-900" : "text-slate-500 hover:text-slate-800"}`}
-                  >
-                    {f}
-                  </button>
-                ))}
-              </div>
+              <FilterBlogsDropDown value={filter} onChange={setFilter} />
             </div>
             <BlogsTable
               rows={rows}
@@ -98,7 +97,7 @@ export default function PostsPage({ onToggle, onDelete }) {
         </div>
       )}
       {openCreateBlogModel && (
-        <CreateBlogModal onClose={() => setOpenCreateBlogModel(false)} />
+        <CreateBlogModal onClose={() => handleCloseModal()} />
       )}
     </div>
   );

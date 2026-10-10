@@ -11,7 +11,6 @@ import DashboardPage from "./pages/DashboardPage";
 import BlogsPage from "./pages/BlogsPage";
 import EditBlogPage from "./pages/EditBlogPage";
 import CommentsPage from "./pages/CommentsPage";
-import CreateBlogData from "./pages/CreateBlogData";
 import { initialPosts, initialComments } from "./data/mockData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -89,12 +88,6 @@ const title = location.pathname.startsWith("/blogs/")
                   onToggle={togglePost}
                   onDelete={deletePost}
                 />
-              }
-            />
-            <Route
-              path="/blogData"
-              element={
-                <CreateBlogData />
               }
             />
             <Route

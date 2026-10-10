@@ -1,10 +1,6 @@
-import { useState } from "react";
-import { EyeDashedIcon, LucideMoveRight, Trash2 } from "lucide-react";
+import { EyeDashedIcon, Star  } from "lucide-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { DeleteModal } from "./DeleteBlogModel";
-import { toast } from "react-toastify";
-import BlogService from "../services/blog.service";
 
 const statusStyle = {
   published: "bg-emerald-100 text-emerald-700",
@@ -14,15 +10,13 @@ const statusStyle = {
 
 export default function BlogsTable({ rows, leaving }) {
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm">
+    <div className="design-scrollbar-verticle w-full overflow-x-auto">
+      <table className="w-full text-sm min-w-[800px]">
         <thead>
           <tr className="text-left text-slate-500 border-y border-slate-100">
             <th className="px-5 py-3 font-medium">Title</th>
             <th className="px-5 py-3 font-medium">Title</th>
-            <th className="px-3 py-3 text-center font-medium hidden md:table-cell">
-              Author
-            </th>
+            <th className="px-3 py-3 text-center font-medium">Featured</th>
             <th className="px-3 py-3 text-center font-medium">Status</th>
             <th className="px-5 py-3 font-medium text-center">Edit</th>
           </tr>
@@ -38,17 +32,37 @@ export default function BlogsTable({ rows, leaving }) {
               </td>
               <td className="px-5 py-3 text-start font-medium text-slate-900">
                 <span className="block text-[14px] font-normal text-slate-400">
-                  {moment(p.date).format("MMM D, YYYY")} | {p.readTime}
+                  {moment(p.createdOn).format("MMM D, YYYY")} | {p.readTime}
                 </span>
                 <span className="block text-lg text-bold !text-orange-800 font-display">
-                  {p.name}
+                  {p.title}
                 </span>
                 <span className="block text-sm font-normal text-slate-400">
                   {p.shortDescription}
                 </span>
               </td>
-              <td className="px-3 py-3 text-slate-600 hidden md:table-cell">
-                {p.author}
+              <td className="px-3 py-3 text-slate-600">
+                {p.featured ? (
+                  <span
+                    title="Featured post"
+                    className="group inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-50 to-orange-100 px-2.5 py-1 text-xs font-medium text-orange-800 shadow-sm ring-1 ring-inset ring-orange-200 transition duration-300 hover:-translate-y-px hover:shadow-md"
+                  >
+                    <Star
+                      size={12}
+                      strokeWidth={1.75}
+                      className="fill-orange-500 text-orange-500 transition-transform duration-500 group-hover:rotate-[72deg]"
+                    />
+                    Featured
+                  </span>
+                ) : (
+                  <span
+                    title="Not featured"
+                    className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-slate-400 ring-1 ring-inset ring-slate-200"
+                  >
+                    <span className="size-1.5 rounded-full bg-slate-300" />
+                    Standard
+                  </span>
+                )}{" "}
               </td>
               <td className="px-3 py-3">
                 <span

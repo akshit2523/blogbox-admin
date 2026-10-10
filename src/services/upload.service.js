@@ -14,6 +14,13 @@ const ImageService = {
 
     return response.data;
   },
+  deleteImage: async (publicId) => {
+  const response = await axiosInstance.delete("/v1/image", {
+    data: { publicId },
+  });
+
+  return response.data;
+},
 };
 
 export default ImageService;

@@ -1,7 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
 import StatCard from "../components/StatCard";
 import BlogService from "../services/blog.service.js";
-import { Eye, Users, FileText, MessageSquare, FolderOpen, CheckCircle2, PenLine } from "lucide-react";
+import {
+  Eye,
+  Users,
+  FileText,
+  MessageSquare,
+  FolderOpen,
+  CheckCircle2,
+  PenLine,
+} from "lucide-react";
 // import ViewsChart from "../components/ViewsChart";
 // import TopPosts from "../components/TopPosts";
 // import CommentList from "../components/CommentList";
@@ -34,17 +42,22 @@ export default function DashboardPage({
   }, []);
 
   function getBlogsByCategory(blogs) {
-    const categories = [
-      ...new Set(blogs?.map((p) => p?.category).filter(Boolean)),
-    ];
+    const getCategoryName = (blog) =>
+      typeof blog?.category === "object" ? blog.category?.name : blog?.category;
+
+    const categories = [...new Set(blogs.map(getCategoryName).filter(Boolean))];
 
     return categories.map((category) => {
-      const categoryBlogs = blogs.filter((p) => p?.category === category);
+      const categoryBlogs = blogs.filter(
+        (blog) => getCategoryName(blog) === category,
+      );
+
       const publishedBlogCount = categoryBlogs.filter(
-        (p) => p.status === "published",
+        (blog) => blog.status === "published",
       ).length;
+
       const draftBlogCount = categoryBlogs.filter(
-        (p) => p.status === "draft",
+        (blog) => blog.status === "draft",
       ).length;
 
       return {
@@ -138,8 +151,8 @@ export default function DashboardPage({
         <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
           {/* header strip */}
           <div className="flex items-center gap-2 border-b border-slate-100 bg-gradient-to-r from-orange-50 to-white px-5 py-4">
-            <FolderOpen size={18} className="text-orange-700" />
-            <h3 className="font-display font-semibold text-slate-900">
+            <h3 className="font-display flex flex-row gap-2 items-center !my-1 font-semibold text-slate-900">
+              <FolderOpen size={18} className="text-orange-700" />
               Blogs by category
             </h3>
           </div>

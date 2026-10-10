@@ -10,7 +10,6 @@ const nav = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/blogs", label: "Blogs", icon: FileText },
   { to: "/comments", label: "Comments", icon: MessageSquare },
-  { to: "/blogData", label: "Create Blog", icon: PenLine },
 ];
 
 export default function Sidebar({ open, onClose, draftCount }) {
